@@ -1,0 +1,13 @@
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.exe
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.deps.json
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.runtimeconfig.json
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.runtimeconfig.dev.json
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.dll
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\bin\Debug\netcoreapp3.1\BankAccountWeek2.pdb
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.AssemblyInfo.cs
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.dll
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.pdb
+C:\Users\hp\source\repos\BankAccountWeek2\BankAccountWeek2\obj\Debug\netcoreapp3.1\BankAccountWeek2.genruntimeconfig.cache
