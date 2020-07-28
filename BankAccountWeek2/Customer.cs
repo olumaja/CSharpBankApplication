@@ -12,7 +12,11 @@ namespace BankAccountWeek2
         private string _firstName;
         private string _lastName;
         private string _email;
-        public string Id { get; }
+
+        public string Id
+        { get; set; }
+
+        public string Password { get; set; }
 
         public Customer()
         {
@@ -20,6 +24,8 @@ namespace BankAccountWeek2
             this.Id = _idNumber.ToString();
             _idNumber++;
         }
+
+        
 
         public string FirstName
         {

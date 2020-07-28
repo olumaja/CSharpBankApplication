@@ -44,61 +44,20 @@ namespace BankAccountWeek2
 
         public string AccountStatememt()
         {
-            var statement = new StringBuilder();
-            statement.AppendLine("\tName\t\tAccount Number\t\tType\t\tAmount\t\tBalance\t\tNote\t\tDate");
 
-            foreach (var info in transactionList)
+           var statement =  String.Format("{0, 20} {1, 16} {2, 8} {3, 10} {4, 10} {5, 10} {6, 8}\n\n", "Name", "Account Number", "Type", "Amount", "Balance", "Note", "Date");
+            
+            foreach(var info in transactionList)
             {
 
-                statement.AppendLine($"{info.OwnerName}\t{info.TAccountNumber}\t\t{info.TAccountType}\t\t{info.TAmount}\t\t{info.TBalance}\t{info.Note}\t\t{info.TransactDate.ToShortDateString()}");
+                statement += String.Format("{0, 20} {1, 16} {2, 9} {3, 10} {4, 10} {5, 17} {6, 10}\n\n", info.OwnerName, info.TAccountNumber, info.TAccountType, info.TAmount, info.TBalance, info.Note, info.TransactDate.ToShortDateString());
+
             }
-            return statement.ToString();
+            
+            
+            return statement;
         }
 
-
-
-        //public decimal Balance
-        //{
-        //    get
-        //    {
-        //        decimal balance = 0;
-        //        foreach (var item in transactionList)
-        //        {
-        //            balance += item.Amount;
-        //        }
-        //        return balance;
-        //    }
-        //}
-
-
-
-
-
-        //public void Deposit(decimal amount, string remark, DateTime depositDate)
-        //{
-        //    if(amount < 1)
-        //    {
-        //        throw new ArgumentOutOfRangeException(nameof(amount), "You cannot deposit negative amount");
-        //    }
-        //    var deposit = new Transaction(amount, remark, DateTime.Now);
-        //    transactionList.Add(deposit);
-
-        //}
-
-        //public void Withdrawal(decimal amount, string remark, DateTime withdrawalDate)
-        //{
-        //    if(amount < 1)
-        //    {
-        //        throw new ArgumentOutOfRangeException(nameof(amount), "You cannot withdraw a negative amount");
-        //    }
-        //    if(Balance - amount < 0)
-        //    {
-        //        throw new InvalidOperationException("Not sufficient funds");
-        //    }
-        //    var deposit = new Transaction(amount, remark, DateTime.Now);
-        //    transactionList.Add(deposit);
-
-        //}
 
     }
 }
