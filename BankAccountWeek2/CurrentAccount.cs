@@ -47,6 +47,35 @@ namespace BankAccountWeek2
 
         }
 
+        public decimal Transfer(decimal amount, string remark, DateTime transferDate)
+        {
+
+            var transferSuccessful = false;
+            try
+            {
+                Withdrawal(amount, remark, transferDate);
+                transferSuccessful = true;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+
+                Console.WriteLine(e.Message);
+                
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (transferSuccessful) 
+            {
+                Console.WriteLine("Transfer successful");
+                return amount; 
+            }
+            return 0;
+
+        }
+
 
     }
 }
