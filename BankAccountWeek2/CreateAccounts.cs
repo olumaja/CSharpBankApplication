@@ -11,7 +11,8 @@ namespace BankAccountWeek2
         private string customerResponse;
         private string accountType;
         private string ownerName;
-
+        private List<string> bankAccountList = new List<string>();
+        decimal transferReceiverBalance = 0;
 
         public CreateAccounts(string fullName)
         {
@@ -104,7 +105,7 @@ namespace BankAccountWeek2
                             var moneyTransfer = 0M;
 
                             string transferReceiverNumber = "";
-                            decimal transferReceiverBalance = 0;
+                           // decimal transferReceiverBalance = 0;
                             var confirmTransfer = false;
                             //moneyTransfer = 0;
                             Console.Write("Enter account number for transfer: ");
@@ -121,30 +122,35 @@ namespace BankAccountWeek2
 
                               moneyTransfer =  personCurrentAccount.Transfer(Convert.ToDecimal(userMoney), remark, DateTime.Now);
 
-                                foreach (var customerAccount in currentAccountList)
+                                foreach(var allAccount in bankAccountList)
                                 {
 
-                                    Console.WriteLine("display customerAccount AccountNumber " + customerAccount.AccountNumber);
-                                    if (customerAccount.AccountNumber == transferReceiverNumber)
+                                    foreach (var segunAccount in currentAccountList)
                                     {
-                                        // Transfer money to another customer account                      
-                                        customerAccount.Deposit(Convert.ToDecimal(moneyTransfer), $"Money transfer from {customerAccount.AccountNumber}", DateTime.Now);
-                                        Console.WriteLine("After recieve transfer " + customerAccount.Balance);
-                                        transferReceiverBalance = customerAccount.Balance;
-                                        confirmTransfer = true;
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        // Roll back money if transfer is not successful
-                                        Console.WriteLine("Money rollback due to fail transfer, please try again");
-                                        customerAccount.Deposit(Convert.ToDecimal(moneyTransfer), "Money rollback", DateTime.Now);
-                                    }
-                                    //Tester
-                                    
-                                    Console.WriteLine("customerAccount.AccountNumber " + customerAccount.AccountNumber);
 
+                                        if (segunAccount.AccountNumber == allAccount && segunAccount.AccountNumber == transferReceiverNumber)
+                                        {
+
+                                            // Transfer money to another customer account                      
+                                            segunAccount.Deposit(Convert.ToDecimal(moneyTransfer), $"Money transfer from {segunAccount.AccountNumber}", DateTime.Now);
+                                            Console.WriteLine("After recieve transfer " + segunAccount.Balance);
+                                            transferReceiverBalance = segunAccount.Balance;
+                                            confirmTransfer = true;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            // Roll back money if transfer is not successful
+                                            Console.WriteLine("Money rollback due to fail transfer, please try again");
+                                            segunAccount.Deposit(Convert.ToDecimal(moneyTransfer), "Money rollback", DateTime.Now);
+                                        }
+
+
+                                    }
+
+                                    if (confirmTransfer) { break; }
                                 }
+                                
 
                                 //To confirm that the reciever of the transfer get the money
                                 if (confirmTransfer)
@@ -166,33 +172,14 @@ namespace BankAccountWeek2
 
                   } while (customerResponse != "q");
 
-                    //Add account to account list
+                    //Add all current account into list
                     currentAccountList.Add(personCurrentAccount);
 
-                    //Confirm the other account
-                   // foreach(var item in currentAccountList)
-                   // {
-                         //foreach (var customerAccount in currentAccountList)
-                         //{
-                         //   if (customerAccount.AccountNumber == transferReceiver)
-                         //   {
-                         //       // Transfer money to another customer account
-                         //       customerAccount.Deposit(Convert.ToDecimal(moneyTransfer), $"Money transfer from {customerAccount.AccountNumber}", DateTime.Now);
-                         //       Console.WriteLine("After recieve transfer " + customerAccount.Balance);
-                         //       break;
-                         //   }
-                         //   else
-                         //   {
-                         //       // Roll back money if transfer is not successful
-                         //       customerAccount.Deposit(Convert.ToDecimal(moneyTransfer), "Money rollback", DateTime.Now);
-                         //   }
-                         //       Console.WriteLine("Account number to receive money " + transferReceiver);
-                         //   Console.WriteLine("customerAccount.AccountNumber " + customerAccount.AccountNumber);
-
-                         //}
-
-                   // }
-                   // Console.WriteLine("View money transfer " + moneyTransfer);
+                    //Get all account number from current account
+                    foreach(var item in currentAccountList)
+                    {
+                        bankAccountList.Add(item.AccountNumber);
+                    }
 
                     //Output Account balance for a particular account
                     Console.WriteLine("Generate Account Balance after transaction");
@@ -295,27 +282,41 @@ namespace BankAccountWeek2
 
                                             if (!String.IsNullOrWhiteSpace(remark))
                                             {
+                                                var confirmTransfer = false;
                                               moneyTransfer =  personSavingsAccount.Transfer(Convert.ToDecimal(userMoney), remark, DateTime.Now);
-                                             
-                                             foreach(var customerAccount in savingsAccountList)
-                                             {
-                                                //   if (customerAccount.AccountNumber == userAccountNumber)
-                                                //   {
-                                                //       // Transfer money to another customer account
-                                                //       customerAccount.Deposit(Convert.ToDecimal(moneyTransfer), $"Money transfer from {customerAccount.AccountNumber}", DateTime.Now);
-                                                //       Console.WriteLine("After recieve transfer " + customerAccount.Balance);
-                                                //       break;
-                                                //   }
-                                                //   else 
-                                                //   {
-                                                //       // Roll back money if transfer is not successful
-                                                //       personSavingsAccount.Deposit(Convert.ToDecimal(moneyTransfer), "Money rollback", DateTime.Now);
-                                                //   }
-                                                Console.WriteLine("Account number of receiver " + customerAccount.AccountNumber);
 
-                                             }       
 
-                                            }
+                                                foreach (var allAccount in bankAccountList)
+                                                {
+
+                                                    foreach (var segunAccount in savingsAccountList)
+                                                    {
+
+                                                        if (segunAccount.AccountNumber == allAccount && segunAccount.AccountNumber == userAccountNumber)
+                                                        {
+
+                                                            // Transfer money to another customer account                      
+                                                            segunAccount.Deposit(Convert.ToDecimal(moneyTransfer), $"Money transfer from {segunAccount.AccountNumber}", DateTime.Now);
+                                                            Console.WriteLine("After recieve transfer " + segunAccount.Balance);
+                                                            transferReceiverBalance = segunAccount.Balance;
+                                                            confirmTransfer = true;
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            // Roll back money if transfer is not successful
+                                                            Console.WriteLine("Money rollback due to fail transfer, please try again");
+                                                            segunAccount.Deposit(Convert.ToDecimal(moneyTransfer), "Money rollback", DateTime.Now);
+                                                        }
+
+
+                                                    }
+
+                                                    if (confirmTransfer) { break; }
+                                                }
+
+
+                            }
                                             else { Console.WriteLine("Transaction fail, try again"); }
                                         }
 
@@ -326,8 +327,15 @@ namespace BankAccountWeek2
 
                                     } while (customerResponse.ToLower() != "q");
 
-                                    //Add account to account list
+                                    //Add savings account to account list
                                     savingsAccountList.Add(personSavingsAccount);
+
+                                    //Get all account number from savings account
+                                    foreach (var item in savingsAccountList)
+                                    {
+                                        bankAccountList.Add(item.AccountNumber);
+                                    }
+
                                     //Output Account balance for a particular account
                                     Console.WriteLine();
                                     var accountBalanceBuilder = new StringBuilder();
